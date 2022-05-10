@@ -11,10 +11,12 @@
   "author": "Sarad",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.27.2",
     "dotenv": "^16.0.0",
     "express": "^4.18.1",
     "express-validator": "^6.14.0",
     "mongoose": "^6.3.3",
+    "node-fetch": "^3.2.4",
     "nodemon": "^2.0.16",
     "pg": "^8.7.3",
     "pg-hstore": "^2.3.4",
