@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./src/index.js",
-    "lint": "eslint ./"
+    "lint": "echo 'Checking files for possible flaws in coding standards.....' && eslint \"**/*.js\""
+  },
+  "husky": {
+    "hooks": {
+        "pre-commit": "npm run lint"
+    }
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +22,7 @@
     "nodemon": "^2.0.16"
   },
   "devDependencies": {
-    "eslint": "^8.15.0"
+    "eslint": "^8.15.0",
+    "husky": "^8.0.1"
   }
 }
