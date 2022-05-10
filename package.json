@@ -1,18 +1,14 @@
 {
   "name": "kotuko",
   "version": "1.0.0",
-  "description": "",
+  "description": "Kotuku interview assignment",
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./src/index.js",
-    "lint": "echo 'Checking files for possible flaws in coding standards.....' && eslint \"**/*.js\""
+    "lint": "echo 'Checking files for possible flaws in coding standards.....' && eslint \"**/*.js\"",
+    "prepare": "husky install"
   },
-  "husky": {
-    "hooks": {
-        "pre-commit": "npm run lint"
-    }
-  },
-  "author": "",
+  "author": "Sarad",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.0.0",
