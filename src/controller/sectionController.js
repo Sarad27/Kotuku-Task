@@ -1,11 +1,11 @@
 const axios = require('axios');
 const dotenv = require('dotenv');
 dotenv.config();
+const {isSectionNameValid} = require('../helper/regex-helper');
 
 exports.getSection = async (req,res) =>{ 
     try{
-        const section = /^[a-z]+(-[a-z]+)*$/.test(req.params.section);
-        if(section){
+        if(isSectionNameValid(req.params.section)){
             const response = await axios.get(`https://content.guardianapis.com/${req.params.section}`,{
                 params: { 'api-key' : process.env.GUARDIAN_API  } 
             });
