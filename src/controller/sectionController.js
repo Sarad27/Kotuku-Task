@@ -4,13 +4,16 @@ dotenv.config();
 const {isSectionNameValid} = require('../helper/regex-helper');
 const {logger} = require('../helper/log-helper');
 const {appCache} = require('../helper/cache-helper');
+const {generateRss} = require('../helper/rss-helper');
 
 exports.getSection = async (req,res) =>{ 
     try{
+        //Checking validity of section parameter passed
         if(!isSectionNameValid(req.params.section)){
             logger.error(`${req.params.section} : Section name is in invalid format to process. Only lowercase letters with hyphen in between is allowed.`);
             throw new Error('Section name is in invalid format to process. Only lowercase letters with hyphen in between is allowed.');
         }
+        //Checking if the data is already cached
         if(appCache.has(req.params.section)){
             logger.info(`${req.params.section} : Section data fetched successfully.`);
             res.status(200).json(appCache.get(req.params.section));
@@ -21,7 +24,9 @@ exports.getSection = async (req,res) =>{
             if(response){
                 appCache.set(req.params.section, response.data.response);
                 logger.info(`${req.params.section} : Section data fetched successfully.`);
-                res.status(200).json(response.data.response);
+                const rssData = generateRss(response.data.response);
+                res.set('content-type', 'text/xml');
+                res.status(200).send(rssData);
             }
         }
     }catch(e){
