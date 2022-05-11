@@ -4,7 +4,7 @@ const sections = require( './sections');
 
 const app = express();
 
-app.use('/', sections);
+app.use('/section', sections);
 
 
 module.exports = app;
