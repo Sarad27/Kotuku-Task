@@ -4,6 +4,8 @@ require('dotenv').config();
 
 const app = express();
 
+require('./helper/cache-helper');
+
 const apiRoutes = require('./routes');
 
 app.use(express.json());
