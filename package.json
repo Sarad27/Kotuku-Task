@@ -6,6 +6,7 @@
   "scripts": {
     "start": "nodemon ./src/index.js",
     "lint": "echo 'Checking files for possible flaws in coding standards.....' && eslint \"**/*.js\"",
+    "lint-fix": "echo 'Fixing files for possible flaws in coding standards.....' && eslint \"**/*.js\" --fix",
     "prepare": "husky install"
   },
   "author": "Sarad",
