@@ -16,15 +16,17 @@ exports.getSection = async (req,res) =>{
         //Checking if the data is already cached
         if(appCache.has(req.params.section)){
             logger.info(`${req.params.section} : Section data fetched successfully.`);
-            res.status(200).json(appCache.get(req.params.section));
+            const cahcedData = appCache.get(req.params.section);
+            res.set('content-type', 'text/xml');
+            res.status(200).send(cahcedData);
         }else{
             const response = await axios.get(`https://content.guardianapis.com/${req.params.section}`,{
                 params: { 'api-key' : process.env.GUARDIAN_API  } 
             });
             if(response){
-                appCache.set(req.params.section, response.data.response);
                 logger.info(`${req.params.section} : Section data fetched successfully.`);
                 const rssData = generateRss(response.data.response);
+                appCache.set(req.params.section, rssData);
                 res.set('content-type', 'text/xml');
                 res.status(200).send(rssData);
             }

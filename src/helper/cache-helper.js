@@ -1,2 +1,2 @@
 const nodecache = require('node-cache');
-exports.appCache =new nodecache({ stdTTL : 1});
+exports.appCache =new nodecache({ stdTTL : 600});
